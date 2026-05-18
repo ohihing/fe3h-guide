@@ -6050,7 +6050,7 @@
             </div>
         </div>
     </div>
-<div class="char-section" data-house="교단">
+<div> class="char-section" data-house="교단">
         <button class="char-trigger" onclick="toggleChar(this)">
             <div class="char-header-info">
                 <div>
@@ -6163,11 +6163,16 @@
         currentSection.classList.toggle('active');
     }
 
-    // 탭 필터링 함수
+    // 반 필터링 함수 (풍화설월 내부 전용)
     function filterHouse(house) {
-        const btns = document.querySelectorAll('.nav-btn');
+        const btns = document.querySelectorAll('#house-nav .nav-btn');
         btns.forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        
+        // 클릭한 탭을 안전하게 찾아 활성화 (수정된 부분)
+        const targetBtn = document.querySelector(`button[onclick*="'${house}'"]`);
+        if(targetBtn) {
+            targetBtn.classList.add('active');
+        }
 
         const sections = document.querySelectorAll('.char-section');
         sections.forEach(section => {
