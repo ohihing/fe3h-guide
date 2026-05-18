@@ -81,6 +81,36 @@
             .image-gallery { grid-template-columns: 1fr; }
             .char-trigger h2 { font-size: 1.25rem; }
             header h1 { font-size: 1.8rem; }
+
+        /* 홈 대시보드 화면 스타일 */
+        .dashboard-view { display: block; }
+        .welcome-banner { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 35px 30px; margin-bottom: 30px; text-align: center; }
+        .welcome-banner h2 { color: var(--accent-gold); margin-bottom: 12px; font-size: 1.8rem; font-weight: 800; }
+        .welcome-banner p { color: var(--text-muted); line-height: 1.6; font-size: 1rem; }
+        
+        .house-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .house-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 25px; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-align: center; position: relative; overflow: hidden; }
+        .house-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--border); }
+        .house-card.house-byleth::before { background: var(--accent-byleth); }
+        .house-card.house-black::before { background: #e53e3e; }
+        .house-card.house-blue::before { background: #3182ce; }
+        .house-card.house-deer::before { background: #dd6b20; }
+        .house-card.house-wolf::before { background: #805ad5; }
+        .house-card.house-church::before { background: #718096; }
+        
+        .house-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); box-shadow: 0 8px 24px rgba(214, 175, 55, 0.12); }
+        .house-card i { font-size: 2.3rem; color: var(--text-muted); margin-bottom: 15px; transition: 0.3s; }
+        .house-card:hover i { color: var(--accent-gold); }
+        .house-card h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text-main); font-weight: 700; }
+        .house-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+        .system-tip-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; }
+        .system-tip-section h3 { font-size: 1.35rem; color: var(--text-main); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .system-tip-section h3 i { color: var(--accent-gold); }
+        .tip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .tip-card { background: var(--bg-inner); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+        .tip-card h4 { font-size: 1.05rem; color: var(--accent-gold); margin-bottom: 10px; font-weight: 700; }
+        .tip-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
         }
     </style>
 </head>
@@ -92,12 +122,124 @@
 </header>
 
 <nav id="house-nav">
-    <button class="nav-btn active" onclick="filterHouse('주인공')">주인공</button>
+    <button class="nav-btn active" onclick="filterHouse('home')">홈 (메인)</button>
+    <button class="nav-btn" onclick="filterHouse('주인공')">주인공</button>
     <button class="nav-btn" onclick="filterHouse('흑수리')">흑수리</button>
     <button class="nav-btn" onclick="filterHouse('청사자')">청사자</button>
     <button class="nav-btn" onclick="filterHouse('금사슴')">금사슴</button>
     <button class="nav-btn" onclick="filterHouse('잿빛늑대')">잿빛늑대</button>
     <button class="nav-btn" onclick="filterHouse('교단')">교단</button>
+</nav>
+
+<div class="container" id="char-container">
+
+    <div id="dashboard-view" class="dashboard-view">
+        <div class="welcome-banner">
+            <h2>대수도원 전술 통제실</h2>
+            <p>파이어 엠블렘 풍화설월의 최고 효율 전술 빌드를 집대성한 가이드 허브입니다.<br>아래에서 원하는 세력을 선택하거나 상단 메뉴를 클릭하여 캐릭터별 가이드를 확인하세요.</p>
+        </div>
+
+        <div class="house-grid">
+            <div class="house-card house-byleth" onclick="filterHouse('주인공')">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3>주인공 (벨레트 / 벨레스)</h3>
+                <p>전장의 중심을 잡아주는 수수께끼의 용병 출신 사관학교 교사</p>
+            </div>
+            <div class="house-card house-black" onclick="filterHouse('흑수리')">
+                <i class="fa-solid fa-feather"></i>
+                <h3>흑수리반 (Black Eagles)</h3>
+                <p>에델가르트가 이끄는 마법과 도끼 중심의 아드라스타 제국 학과</p>
+            </div>
+            <div class="house-card house-blue" onclick="filterHouse('청사자')">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>청사자반 (Blue Lions)</h3>
+                <p>디미트리가 이끄는 강력한 물리 전위 중심의 퍼거스 신성 왕국 학과</p>
+            </div>
+            <div class="house-card house-deer" onclick="filterHouse('금사슴')">
+                <i class="fa-solid fa-bullseye"></i>
+                <h3>금사슴반 (Golden Deer)</h3>
+                <p>클로드가 이끄는 다재다능한 활과 유틸 중심의 레스터 제후 동맹 학과</p>
+            </div>
+            <div class="house-card house-wolf" onclick="filterHouse('잿빛늑대')">
+                <i class="fa-solid fa-moon"></i>
+                <h3>잿빛늑대반 (Ashen Wolves)</h3>
+                <p>율리스가 이끄는 지하 도시 어비스의 개성 넘치는 유격대 학과</p>
+            </div>
+            <div class="house-card house-church" onclick="filterHouse('교단')">
+                <i class="fa-solid fa-church"></i>
+                <h3>세이로스 교단 & 기사단</h3>
+                <p>강력한 즉시 전력감과 독보적인 보조 유틸을 가진 든든한 조력자들</p>
+            </div>
+        </div>
+
+        <div class="system-tip-section">
+            <h3><i class="fa-solid fa-lightbulb"></i> 풍화설월 육성 핵심 공통 팁 (Maddening 필수)</h3>
+            <div class="tip-grid">
+                <div class="tip-card">
+                    <h4>물리 딜러 필수: 브리건드 마스터</h4>
+                    <p>중급직 '브리건드'를 마스터하면 선공 시 공격력+6을 해주는 <strong>[귀신 일격]</strong>을 상속받습니다. 모든 물리 딜러(궁수, 격투가, 비행 전사)는 무조건 거쳐 가야 하는 필수 스킬입니다.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>마법 딜러 필수: 메이지 마스터</h4>
+                    <p>중급직 '메이지'를 마스터하면 선공 시 마력+6을 해주는 <strong>[마신 일격]</strong>을 상속받습니다. 리시테아, 도로테아, 콘스탄체 등 마법으로 딜을 넣는 모든 캐릭의 핵심 원동력입니다.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>명중률 보완 필수: 아처 마스터</h4>
+                    <p>중급직 '아처'를 마스터하면 조건 없이 명중률을 20이나 상시 올려주는 <strong>[명중+20]</strong>을 줍니다. 난이도가 높아질수록 적들의 회피가 미쳐 날뛰기 때문에 모든 딜러진에게 매우 귀중합니다.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>다회차 플레이의 핵심 유산</h4>
+                    <p>로렌츠 외전 보상인 <strong>[튀르소스의 지팡이]</strong>(마법 사거리+2)와 율리스 외전 보상인 <strong>[별 부여반지]</strong>(이동력+1, 재이동)는 메인 딜러에게 쥐여주는 순간 게임의 장르가 달라집니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    ```
+
+---
+
+### 3️⃣ 3단계: 자바스크립트 `filterHouse` 함수 전면 교체
+
+웹페이지 맨 밑바닥에 있는 `<script>` 태그 안의 `filterHouse` 함수를 아래 코드로 완전히 교체해 줍니다. (메인 대시보드 카드 클릭과 상단 메뉴 클릭을 완벽하게 오가는 인터랙션 제어 로직입니다.)
+
+```javascript
+    // 탭 필터링 함수
+    function filterHouse(house) {
+        const btns = document.querySelectorAll('.nav-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        
+        // 클릭한 탭 메뉴 활성화 (상단 메뉴와 홈 카드 클릭 둘 다 정상 작동하도록 처리)
+        const targetBtn = document.querySelector(`button[onclick*="'${house}'"]`);
+        if(targetBtn) {
+            targetBtn.classList.add('active');
+        }
+
+        const dashboard = document.getElementById('dashboard-view');
+        const sections = document.querySelectorAll('.char-section');
+
+        if (house === 'home') {
+            // 홈 화면 활성화 및 모든 캐릭터 숨김
+            dashboard.style.display = 'block';
+            sections.forEach(section => section.classList.remove('active-house'));
+        } else {
+            // 홈 화면 숨김 및 선택한 세력 캐릭터만 노출
+            dashboard.style.display = 'none';
+            sections.forEach(section => {
+                if (section.getAttribute('data-house') === house) {
+                    section.classList.add('active-house');
+                } else {
+                    section.classList.remove('active-house');
+                }
+            });
+        }
+        
+        // 탭(반)을 이동할 때 혹시 열려있던 캐릭터 아코디언이 있다면 말끔하게 초기화
+        sections.forEach(section => section.classList.remove('active'));
+        
+        // 화면 최상단으로 자동 스크롤
+        window.scrollTo(0, 0);
+    }
 </nav>
 
 <div class="container" id="char-container">
