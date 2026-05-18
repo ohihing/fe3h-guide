@@ -81,113 +81,15 @@
             .image-gallery { grid-template-columns: 1fr; }
             .char-trigger h2 { font-size: 1.25rem; }
             header h1 { font-size: 1.8rem; }
-        /* 메인 대시보드 및 게임 진열장 패키지 스타일 */
-        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
-        .game-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-align: center; padding-bottom: 20px; }
-        .game-card:hover { transform: translateY(-8px); border-color: var(--accent-gold); box-shadow: 0 12px 24px rgba(214, 175, 55, 0.15); }
-        
-        /* 네모 형상의 게임 패키지 이미지 박스 플레이스홀더 */
-        .game-cover-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--bg-inner); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); font-size: 3rem; transition: 0.3s; }
-        .game-card:hover .game-cover-placeholder { color: var(--accent-gold); background: rgba(255,255,255,0.02); }
-        .game-card h3 { font-size: 1.25rem; font-weight: 700; margin-top: 15px; color: var(--text-main); }
-        .game-year { font-size: 0.9rem; color: var(--accent-gold); font-weight: 600; margin-top: 5px; }
-
-        /* 뒤로가기 타격 버튼 스타일 */
-        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); border-radius: 30px; cursor: pointer; font-weight: 600; transition: 0.3s; margin-bottom: 25px; }
-        .back-btn:hover { background: var(--text-main); color: #000; border-color: var(--text-main); }
-
-        /* 게임 가이드 뷰 전환 컨트롤러 */
-        .game-view { display: none; }
-        .placeholder-view { text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); }
-        .placeholder-view i { font-size: 4rem; color: var(--text-muted); margin-bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>파이어엠블렘 시리즈별 육성 완벽가이드</h1>
-    <p>최고의 효율을 위한 타이틀별 전술 빌드 아카이브</p>
+    <h1>풍화설월 마스터 가이드</h1>
+    <p>최고의 효율을 위한 캐릭터별 최적화 빌드</p>
 </header>
-
-<div class="container" id="main-dashboard">
-    <div class="game-grid">
-        <div class="game-card" onclick="openGame('awakening')">
-            <div class="game-cover-placeholder">
-                <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3>각성</h3>
-            <div class="game-year">2012</div>
-        </div>
-        <div class="game-card" onclick="openGame('fates')">
-            <div class="game-cover-placeholder">
-                <i class="fa-solid fa-code-branch"></i>
-            </div>
-            <h3>if</h3>
-            <div class="game-year">2015</div>
-        </div>
-        <div class="game-card" onclick="openGame('echoes')">
-            <div class="game-cover-placeholder">
-                <i class="fa-solid fa-hourglass-half"></i>
-            </div>
-            <h3>에코즈</h3>
-            <div class="game-year">2017</div>
-        </div>
-        <div class="game-card" onclick="openGame('threehouses')">
-            <div class="game-cover-placeholder" style="color: var(--accent-byleth);">
-                <i class="fa-solid fa-flag"></i>
-            </div>
-            <h3>풍화설월</h3>
-            <div class="game-year">2019</div>
-        </div>
-        <div class="game-card" onclick="openGame('threehopes')">
-            <div class="game-cover-placeholder">
-                <i class="fa-solid fa-swords"></i>
-            </div>
-            <h3>풍화설월 무쌍</h3>
-            <div class="game-year">2022</div>
-        </div>
-        <div class="game-card" onclick="openGame('engage')">
-            <div class="game-cover-placeholder">
-                <i class="fa-solid fa-ring"></i>
-            </div>
-            <h3>인게이지</h3>
-            <div class="game-year">2023</div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-
-    <div id="view-awakening" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h2>각성 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">전술 참모와 전략적 후대 육성 가이드가 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
-    <div id="view-fates" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-code-branch"></i>
-            <h2>if 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">백야와 암야, 투마 루트의 최적화 전직 빌드가 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
-    <div id="view-echoes" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-hourglass-half"></i>
-            <h2>에코즈 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">아름과 세리카 군의 정통파 클래스 체인지 가이드가 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
-    <div id="view-threehouses" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
 
 <nav id="house-nav">
     <button class="nav-btn active" onclick="filterHouse('주인공')">주인공</button>
@@ -5941,7 +5843,7 @@
             </div>
         </div>
     </div>
-<div> class="char-section" data-house="교단">
+<div class="char-section" data-house="교단">
         <button class="char-trigger" onclick="toggleChar(this)">
             <div class="char-header-info">
                 <div>
@@ -6037,47 +5939,28 @@
         </div>
     </div>
 
-</div> </div> <div id="view-threehopes" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-swords"></i>
-            <h2>풍화설월 무쌍 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">액션 무쌍 메타에 맞춘 병과 전술 보정이 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
-    <div id="view-engage" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-ring"></i>
-            <h2>인게이지 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">문장사 반지 동조 능력치 극대화 빌드가 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
 </div> <script>
     // 아코디언 자동 닫힘 및 여닫기 함수
     function toggleChar(btn) {
         const currentSection = btn.parentElement;
+        
+        // 다른 열려있는 아코디언들을 찾아서 모두 닫음
         const allSections = document.querySelectorAll('.char-section');
         allSections.forEach(section => {
             if (section !== currentSection && section.classList.contains('active')) {
                 section.classList.remove('active');
             }
         });
+
+        // 클릭한 아코디언의 상태를 토글
         currentSection.classList.toggle('active');
     }
 
-    // 반 필터링 함수 (풍화설월 내부 전용)
+    // 탭 필터링 함수
     function filterHouse(house) {
-        const btns = document.querySelectorAll('#house-nav .nav-btn');
+        const btns = document.querySelectorAll('.nav-btn');
         btns.forEach(b => b.classList.remove('active'));
-        
-        // 클릭한 탭을 안전하게 찾아 활성화
-        const targetBtn = document.querySelector(`button[onclick*="'${house}'"]`);
-        if(targetBtn) {
-            targetBtn.classList.add('active');
-        }
+        event.target.classList.add('active');
 
         const sections = document.querySelectorAll('.char-section');
         sections.forEach(section => {
@@ -6087,36 +5970,11 @@
                 section.classList.remove('active-house');
             }
         });
+        
+        // 탭(반)을 이동할 때 혹시 열려있던 아코디언이 있다면 깔끔하게 초기화
         sections.forEach(section => section.classList.remove('active'));
     }
-
-    // [SPA 네비게이션] 특정 게임 가이드 개방
-    function openGame(gameId) {
-        document.getElementById('main-dashboard').style.display = 'none';
-        const views = document.querySelectorAll('.game-view');
-        views.forEach(v => v.style.display = 'none');
-        
-        const targetView = document.getElementById('view-' + gameId);
-        if(targetView) {
-            targetView.style.display = 'block';
-        }
-
-        if(gameId === 'threehouses') {
-            const defaultBtn = document.querySelector('#house-nav .nav-btn');
-            if(defaultBtn) {
-                defaultBtn.click();
-            }
-        }
-        window.scrollTo(0, 0);
-    }
-
-    // [SPA 네비게이션] 메인 대시보드 진열장 복귀
-    function goBack() {
-        const views = document.querySelectorAll('.game-view');
-        views.forEach(v => v.style.display = 'none');
-        document.getElementById('main-dashboard').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
 </script>
+
 </body>
 </html>
