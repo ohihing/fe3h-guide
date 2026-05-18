@@ -188,115 +188,6 @@
 
     <div id="view-threehouses" class="game-view">
         <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        
-        <nav id="house-nav">
-            ... (기존 반 선택 버튼들) ...
-        </nav>
-        <div id="char-container">
-            ... (기존에 가득 채워둔 벨레트부터 모든 아코디언 캐릭터 데이터들) ...
-        </div>
-        </div>
-
-    <div id="view-threehopes" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-swords"></i>
-            <h2>풍화설월 무쌍 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">액션 무쌍 메타에 맞춘 병과 전술 보정이 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
-    <div id="view-engage" class="game-view">
-        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
-        <div class="placeholder-view">
-            <i class="fa-solid fa-ring"></i>
-            <h2>인게이지 데이터 레이어 구성 중</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">문장사 반지 동조 능력치 극대화 빌드가 곧 추가될 예정입니다.</p>
-        </div>
-    </div>
-
-</div> ```
-
----
-
-### 3️⃣ 3단계: 맨 아래 `<script>` 태그 자바스크립트 코드 전면 교체
-
-웹페이지 맨 밑바닥에 있는 `<script>`부터 `</script>`까지의 내용을 아래의 완벽한 탭/화면 유기적 전환 제어 로직으로 교체해 줍니다.
-
-```html
-<script>
-    // 아코디언 자동 닫힘 및 여닫기 함수
-    function toggleChar(btn) {
-        const currentSection = btn.parentElement;
-        const allSections = document.querySelectorAll('.char-section');
-        allSections.forEach(section => {
-            if (section !== currentSection && section.classList.contains('active')) {
-                section.classList.remove('active');
-            }
-        });
-        currentSection.classList.toggle('active');
-    }
-
-    // 반 필터링 함수 (풍화설월 내부 전용)
-    function filterHouse(house) {
-        const btns = document.querySelectorAll('#house-nav .nav-btn');
-        btns.forEach(b => b.classList.remove('active'));
-        
-        // 클릭 이벤트 방어 코딩
-        if(event && event.target) {
-            event.target.classList.add('active');
-        }
-
-        const sections = document.querySelectorAll('.char-section');
-        sections.forEach(section => {
-            if (section.getAttribute('data-house') === house) {
-                section.classList.add('active-house');
-            } else {
-                section.classList.remove('active-house');
-            }
-        });
-        sections.forEach(section => section.classList.remove('active'));
-    }
-
-    // [SPA 네비게이션] 특정 게임 가이드 개방
-    function openGame(gameId) {
-        // 메인 메뉴 대시보드 은닉
-        document.getElementById('main-dashboard').style.display = 'none';
-        
-        // 모든 게임 세부 뷰 초기화 은닉
-        const views = document.querySelectorAll('.game-view');
-        views.forEach(v => v.style.display = 'none');
-        
-        // 선택한 게임 레이아웃 노출
-        const targetView = document.getElementById('view-' + gameId);
-        if(targetView) {
-            targetView.style.display = 'block';
-        }
-
-        // 풍화설월을 선택해 들어간 경우, 직관성을 위해 자동으로 '주인공' 탭 초기 작동
-        if(gameId === 'threehouses') {
-            const defaultBtn = document.querySelector('#house-nav .nav-btn');
-            if(defaultBtn) {
-                defaultBtn.click();
-            }
-        }
-        
-        // 화면 최상단으로 스크롤 이동
-        window.scrollTo(0, 0);
-    }
-
-    // [SPA 네비게이션] 메인 대시보드 진열장 복귀
-    function goBack() {
-        // 모든 세부 게임 뷰 은닉
-        const views = document.querySelectorAll('.game-view');
-        views.forEach(v => v.style.display = 'none');
-        
-        // 메인 대시보드 진열장 전면 배치
-        document.getElementById('main-dashboard').style.display = 'block';
-        
-        window.scrollTo(0, 0);
-    }
-</script>
 
 <nav id="house-nav">
     <button class="nav-btn active" onclick="filterHouse('주인공')">주인공</button>
@@ -6146,20 +6037,34 @@
         </div>
     </div>
 
+</div> </div> <div id="view-threehopes" class="game-view">
+        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
+        <div class="placeholder-view">
+            <i class="fa-solid fa-swords"></i>
+            <h2>풍화설월 무쌍 데이터 레이어 구성 중</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">액션 무쌍 메타에 맞춘 병과 전술 보정이 곧 추가될 예정입니다.</p>
+        </div>
+    </div>
+
+    <div id="view-engage" class="game-view">
+        <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> 메인 진열장으로</button>
+        <div class="placeholder-view">
+            <i class="fa-solid fa-ring"></i>
+            <h2>인게이지 데이터 레이어 구성 중</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">문장사 반지 동조 능력치 극대화 빌드가 곧 추가될 예정입니다.</p>
+        </div>
+    </div>
+
 </div> <script>
     // 아코디언 자동 닫힘 및 여닫기 함수
     function toggleChar(btn) {
         const currentSection = btn.parentElement;
-        
-        // 다른 열려있는 아코디언들을 찾아서 모두 닫음
         const allSections = document.querySelectorAll('.char-section');
         allSections.forEach(section => {
             if (section !== currentSection && section.classList.contains('active')) {
                 section.classList.remove('active');
             }
         });
-
-        // 클릭한 아코디언의 상태를 토글
         currentSection.classList.toggle('active');
     }
 
@@ -6168,7 +6073,7 @@
         const btns = document.querySelectorAll('#house-nav .nav-btn');
         btns.forEach(b => b.classList.remove('active'));
         
-        // 클릭한 탭을 안전하게 찾아 활성화 (수정된 부분)
+        // 클릭한 탭을 안전하게 찾아 활성화
         const targetBtn = document.querySelector(`button[onclick*="'${house}'"]`);
         if(targetBtn) {
             targetBtn.classList.add('active');
@@ -6182,11 +6087,36 @@
                 section.classList.remove('active-house');
             }
         });
-        
-        // 탭(반)을 이동할 때 혹시 열려있던 아코디언이 있다면 깔끔하게 초기화
         sections.forEach(section => section.classList.remove('active'));
     }
-</script>
 
+    // [SPA 네비게이션] 특정 게임 가이드 개방
+    function openGame(gameId) {
+        document.getElementById('main-dashboard').style.display = 'none';
+        const views = document.querySelectorAll('.game-view');
+        views.forEach(v => v.style.display = 'none');
+        
+        const targetView = document.getElementById('view-' + gameId);
+        if(targetView) {
+            targetView.style.display = 'block';
+        }
+
+        if(gameId === 'threehouses') {
+            const defaultBtn = document.querySelector('#house-nav .nav-btn');
+            if(defaultBtn) {
+                defaultBtn.click();
+            }
+        }
+        window.scrollTo(0, 0);
+    }
+
+    // [SPA 네비게이션] 메인 대시보드 진열장 복귀
+    function goBack() {
+        const views = document.querySelectorAll('.game-view');
+        views.forEach(v => v.style.display = 'none');
+        document.getElementById('main-dashboard').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+</script>
 </body>
 </html>
