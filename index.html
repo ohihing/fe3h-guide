@@ -195,55 +195,6 @@
         </div>
     </div>
 
-    ```
-
----
-
-### 3️⃣ 3단계: 자바스크립트 `filterHouse` 함수 전면 교체
-
-웹페이지 맨 밑바닥에 있는 `<script>` 태그 안의 `filterHouse` 함수를 아래 코드로 완전히 교체해 줍니다. (메인 대시보드 카드 클릭과 상단 메뉴 클릭을 완벽하게 오가는 인터랙션 제어 로직입니다.)
-
-```javascript
-    // 탭 필터링 함수
-    function filterHouse(house) {
-        const btns = document.querySelectorAll('.nav-btn');
-        btns.forEach(b => b.classList.remove('active'));
-        
-        // 클릭한 탭 메뉴 활성화 (상단 메뉴와 홈 카드 클릭 둘 다 정상 작동하도록 처리)
-        const targetBtn = document.querySelector(`button[onclick*="'${house}'"]`);
-        if(targetBtn) {
-            targetBtn.classList.add('active');
-        }
-
-        const dashboard = document.getElementById('dashboard-view');
-        const sections = document.querySelectorAll('.char-section');
-
-        if (house === 'home') {
-            // 홈 화면 활성화 및 모든 캐릭터 숨김
-            dashboard.style.display = 'block';
-            sections.forEach(section => section.classList.remove('active-house'));
-        } else {
-            // 홈 화면 숨김 및 선택한 세력 캐릭터만 노출
-            dashboard.style.display = 'none';
-            sections.forEach(section => {
-                if (section.getAttribute('data-house') === house) {
-                    section.classList.add('active-house');
-                } else {
-                    section.classList.remove('active-house');
-                }
-            });
-        }
-        
-        // 탭(반)을 이동할 때 혹시 열려있던 캐릭터 아코디언이 있다면 말끔하게 초기화
-        sections.forEach(section => section.classList.remove('active'));
-        
-        // 화면 최상단으로 자동 스크롤
-        window.scrollTo(0, 0);
-    }
-</nav>
-
-<div class="container" id="char-container">
-    
     <div class="char-section active-house" data-house="주인공">
         <button class="char-trigger" onclick="toggleChar(this)">
             <div class="char-header-info">
@@ -6098,23 +6049,41 @@
         currentSection.classList.toggle('active');
     }
 
-    // 탭 필터링 함수
+// 탭 필터링 함수
     function filterHouse(house) {
         const btns = document.querySelectorAll('.nav-btn');
         btns.forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
-
-        const sections = document.querySelectorAll('.char-section');
-        sections.forEach(section => {
-            if (section.getAttribute('data-house') === house) {
-                section.classList.add('active-house');
-            } else {
-                section.classList.remove('active-house');
-            }
-        });
         
-        // 탭(반)을 이동할 때 혹시 열려있던 아코디언이 있다면 깔끔하게 초기화
+        // 클릭한 탭 메뉴 활성화 (상단 메뉴와 홈 카드 클릭 둘 다 정상 작동하도록 처리)
+        const targetBtn = document.querySelector(`button[onclick*="'${house}'"]`);
+        if(targetBtn) {
+            targetBtn.classList.add('active');
+        }
+
+        const dashboard = document.getElementById('dashboard-view');
+        const sections = document.querySelectorAll('.char-section');
+
+        if (house === 'home') {
+            // 홈 화면 활성화 및 모든 캐릭터 숨김
+            dashboard.style.display = 'block';
+            sections.forEach(section => section.classList.remove('active-house'));
+        } else {
+            // 홈 화면 숨김 및 선택한 세력 캐릭터만 노출
+            dashboard.style.display = 'none';
+            sections.forEach(section => {
+                if (section.getAttribute('data-house') === house) {
+                    section.classList.add('active-house');
+                } else {
+                    section.classList.remove('active-house');
+                }
+            });
+        }
+        
+        // 탭(반)을 이동할 때 혹시 열려있던 캐릭터 아코디언이 있다면 말끔하게 초기화
         sections.forEach(section => section.classList.remove('active'));
+        
+        // 화면 최상단으로 자동 스크롤
+        window.scrollTo(0, 0);
     }
 </script>
 
