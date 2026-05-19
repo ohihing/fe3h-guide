@@ -78,7 +78,7 @@
 
         /* 모바일 최적화 */
         @media (max-width: 600px) {
-            .image-gallery { grid-template-columns: 1fr; }
+            /* ⭕ 위 줄을 삭제했습니다! 이제 모바일에서도 PC처럼 좌우로 나란히(작게) 나옵니다 ⭕ */
             .char-trigger h2 { font-size: 1.25rem; }
             header h1 { font-size: 1.8rem; }
 
@@ -6033,9 +6033,10 @@
     </div>
 
 </div> <script>
-    // 아코디언 자동 닫힘 및 여닫기 함수
+    // 아코디언 자동 닫힘 및 자동 스크롤 함수
     function toggleChar(btn) {
         const currentSection = btn.parentElement;
+        const isOpening = !currentSection.classList.contains('active'); // 지금 열려고 하는 것인지 확인
         
         // 다른 열려있는 아코디언들을 찾아서 모두 닫음
         const allSections = document.querySelectorAll('.char-section');
@@ -6047,6 +6048,23 @@
 
         // 클릭한 아코디언의 상태를 토글
         currentSection.classList.toggle('active');
+
+        // 만약 아코디언이 열리는 상태라면, 해당 캐릭터의 이름 위치로 스크롤 이동
+        if (isOpening) {
+            setTimeout(() => {
+                // 위에 둥둥 떠 있는 네비게이션 메뉴바의 높이 계산
+                const navHeight = document.getElementById('house-nav').offsetHeight;
+                
+                // 현재 클릭한 캐릭터 컨테이너의 절대 위치 계산
+                const elementPosition = currentSection.getBoundingClientRect().top + window.pageYOffset;
+                
+                // 메뉴바에 가려지지 않도록 높이만큼 빼고 약간의 여백(10px)을 주어 스크롤
+                window.scrollTo({
+                    top: elementPosition - navHeight - 10,
+                    behavior: 'smooth'
+                });
+            }, 150); // 다른 창이 닫히고 렌더링될 시간을 0.15초 벌어줌
+        }
     }
 
 // 탭 필터링 함수
