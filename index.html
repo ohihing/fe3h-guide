@@ -111,6 +111,10 @@
         .tip-card { background: var(--bg-inner); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
         .tip-card h4 { font-size: 1.05rem; color: var(--accent-gold); margin-bottom: 10px; font-weight: 700; }
         .tip-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+	/* 1장짜리 사진 크기 및 가운데 정렬 최적화 (2장짜리 크기와 100% 동일하게) */
+        .image-gallery.single { display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px 0; }
+        .image-gallery.single .img-box { width: calc(50% - 7.5px); }
         }
     </style>
 </head>
@@ -207,7 +211,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/byleth_m.webp" alt="벨레트" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Byleth+M'">
                     <span class="img-label">기본 초상화</span>
@@ -367,7 +371,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/byleth_f.webp" alt="벨레스" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Byleth+F'">
                     <span class="img-label">기본 초상화</span>
@@ -2966,7 +2970,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/gilbert_pre.webp" alt="길베르트" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Gilbert'">
                     <span class="img-label">기본 초상화</span>
@@ -4810,7 +4814,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/seteth_pre.webp" alt="세테스" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Seteth'">
                     <span class="img-label">기본 초상화</span>
@@ -4952,7 +4956,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/flayn_pre.webp" alt="흐렌" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Flayn'">
                     <span class="img-label">기본 초상화</span>
@@ -5094,7 +5098,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/shamir_pre.webp" alt="샤미아" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Shamir'">
                     <span class="img-label">기본 초상화</span>
@@ -5236,7 +5240,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/catherine_pre.webp" alt="카트린" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Catherine'">
                     <span class="img-label">기본 초상화</span>
@@ -5377,7 +5381,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/manuela_pre.webp" alt="마누엘라" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Manuela'">
                     <span class="img-label">기본 초상화</span>
@@ -5519,7 +5523,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/hanneman_pre.webp" alt="한네만" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Hanneman'">
                     <span class="img-label">기본 초상화</span>
@@ -5661,7 +5665,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/alois_pre.webp" alt="알로이스" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Alois'">
                     <span class="img-label">기본 초상화</span>
@@ -5948,7 +5952,7 @@
         </button>
         
         <div class="char-content">
-            <div class="image-gallery" style="grid-template-columns: 1fr; max-width: 400px; margin: 20px auto 30px auto;">
+            <div class="image-gallery single">
                 <div class="img-box">
                     <img src="images/anna_pre.webp" alt="안나" onerror="this.src='https://placehold.co/800x1000/151518/f0f0f0?text=Anna'">
                     <span class="img-label">기본 초상화</span>
