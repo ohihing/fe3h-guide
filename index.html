@@ -78,9 +78,9 @@
 
         /* 모바일 최적화 */
         @media (max-width: 600px) {
-            /* ⭕ 위 줄을 삭제했습니다! 이제 모바일에서도 PC처럼 좌우로 나란히(작게) 나옵니다 ⭕ */
             .char-trigger h2 { font-size: 1.25rem; }
             header h1 { font-size: 1.8rem; }
+        } /* ⭕ 여기서 모바일 전용 괄호를 닫아줍니다! 이것이 핵심입니다. ⭕ */
 
         /* 홈 대시보드 화면 스타일 */
         .dashboard-view { display: block; }
@@ -112,9 +112,8 @@
         .tip-card h4 { font-size: 1.05rem; color: var(--accent-gold); margin-bottom: 10px; font-weight: 700; }
         .tip-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-		/* 1장짜리 사진 크기 및 가운데 정렬 최적화 (2장짜리 크기와 100% 동일하게) */
-        .image-gallery.single { display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px 0; }
-        .image-gallery.single .img-box { width: calc(50% - 7.5px); }
+        /* 1장짜리 사진 크기 및 가운데 정렬 최적화 (2장짜리 크기와 수학적으로 100% 동일하게) */
+        .image-gallery.single { display: grid; grid-template-columns: calc(50% - 7.5px); justify-content: center; margin: 20px 0 30px 0; }
         }
     </style>
 </head>
