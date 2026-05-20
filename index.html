@@ -114,11 +114,24 @@
 
         /* 1장짜리 사진 크기 및 가운데 정렬 최적화 (2장짜리 크기와 수학적으로 100% 동일하게) */
         .image-gallery.single { display: grid; grid-template-columns: calc(50% - 7.5px); justify-content: center; margin: 20px 0 30px 0; }
+
+        /* 🌐 최상단 시리즈 통합 워프 네비게이션 (도메인 간 크로스 이주 바) */
+        .series-warp-bar { display: flex; justify-content: center; gap: 8px; padding: 12px; background: #111115; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
+        .warp-link { padding: 6px 14px; font-size: 0.85rem; color: var(--text-muted); border: 1px solid transparent; border-radius: 6px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 6px; }
+        .warp-link:hover { color: var(--text-main); background: rgba(255,255,255,0.05); border-color: var(--border); }
+        .warp-link.current { color: var(--accent-gold); border-color: var(--accent-gold); background: rgba(214, 175, 55, 0.03); }
         }
     </style>
 </head>
 <body>
-
+<div class="series-warp-bar">
+    <a href="https://ohihing.github.io/fe-awakening/" class="warp-link"><i class="fa-solid fa-shield-halved"></i> 각성</a>
+    <a href="https://ohihing.github.io/fe-fates/" class="warp-link"><i class="fa-solid fa-code-branch"></i> if</a>
+    <a href="https://ohihing.github.io/fe-echoes/" class="warp-link"><i class="fa-solid fa-hourglass-half"></i> 에코즈</a>
+    <a href="#" class="warp-link current"><i class="fa-solid fa-flag"></i> 풍화설월</a>
+    <a href="https://ohihing.github.io/fe-hopes/" class="warp-link"><i class="fa-solid fa-swords"></i> 풍설무쌍</a>
+    <a href="https://ohihing.github.io/fe-engage/" class="warp-link"><i class="fa-solid fa-ring"></i> 인게이지</a>
+</div> 
 <header>
     <h1>풍화설월 마스터 가이드</h1>
     <p>최고의 효율을 위한 캐릭터별 최적화 빌드</p>
